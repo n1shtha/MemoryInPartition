@@ -1,0 +1,158 @@
+---
+title: "Remembering Partition"
+author: "Group Members: Shreya Khobragade, Ariyamala Sivakumar, Nishtha Das"
+date: "13/11/2021"
+output: 
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction and Research Question:
+
+Our understanding of the Partition and its history is merely oral -- through stories that were passed down generations by survivors. Given the brutal nature of the partition, these stories were either narrated by someone who lost family during the time or someone who lived through the horror themselves. This gives our dataset a narrative doubleness: we’re looking at literary stories, which are themselves adapted from stories of lived experience. There is also a temporal removal: characters remembering events are removed from the events, the story is removed from the Partition it discusses, and we as readers are removed from the story and time entirely. Hence, we hypothesise that the *form* of narration is especially relevant to *our* understanding of the events that took place. Since oral tradition is largely dependent on memory, a question that arose was: *How does memory affect the telling of violent events?* 
+
+Our database broadly caters to two types of narration: memory (remembered events and told events) and present, real-time narration (narrated events). These include both first-person and third-person narratives. With operationalised queries, we attempt to gauge what form of narration is used when people encounter conflict or death and use the resulting data to answer our research question.
+
+### Operationalising our queries:
+
+1. We used the Character Mortality faceted search with narrative status as a variable to see how many characters’ deaths are told or remembered from memory, as opposed to how many are narrated in real time.
+
+2. We then cross-tabbed conflict in events with their narrative status to determine how much conflict was remembered or narrated.
+
+### Crosstabbing our queries:
+
+```{r, include = FALSE, echo = FALSE}
+narratedvitality <- read.csv("/Users/nishthadas/Desktop/R/narratedvitality.csv")
+rememberedvitality <- read.csv("/Users/nishthadas/Desktop/R/rememberedvitality.csv")
+toldvitality <- read.csv("/Users/nishthadas/Desktop/R/toldvitality.csv")
+narrationconflict <- read.csv("/Users/nishthadas/Desktop/R/narrationconflict.csv")
+```
+
+```{r, echo = FALSE}
+narratedvitality
+```
+<center>
+**Query 1: Mortality in Narrated Events**
+</center>
+
+&nbsp;
+
+```{r, echo = FALSE}
+rememberedvitality
+```
+<center>
+**Query 1: Mortality in Remembered Events**
+</center>
+
+&nbsp;
+
+```{r, echo = FALSE}
+toldvitality
+```
+<center>
+**Query 1: Mortality in Told Events**
+</center>
+
+&nbsp;
+
+```{r, echo = FALSE}
+narrationconflict
+```
+
+<center>
+**Query 2: Narrative Status in Conflict**
+</center>
+
+### Analysis:
+
+Oral history allows for the partition survivors to embody their experiences, in contrast to the effacement of the sufferers in official archives of the event. Despite this, many survivors are often reluctant to speak and relive their own experiences or those narrated to them. The partition is memorialised very differently by its victims, who recount their stories as personal events rather than as fragments of a larger national crisis. 
+
+Perhaps this is part of the reason why the data, rather surprisingly, indicates that the majority of conflicts and deaths are narrated. Further, all kinds of conflicts are narrated, but the conflicts told or remembered (from memory) aren't as comprehensive. While this might partly be influenced by manual deviances in the database, it is still a sizable ratio of difference. It can also speak to an authorial effort to make the text more cohesive or create tension.
+
+On the same tangent, birth and unknown deaths are narrated, not remembered or told. If a death is unknown, there is a good chance that there was too much violence around to know for sure, the urgency of which is often communicated through narration. Besides, as time passes, people may struggle to make peace with this uncertainty, and either repress the event or assume death.  Births, while not primarily dealt with in our analysis, offer us an interesting deliberation to consider in tandem with factors that affected deaths - why are they narrated instead of remembered and what does that tell us about the nature of the Partition? One potential factor is again the number of deaths. A high number of deaths in the age group 20 - 50 leave no direct remembrance for most of these births. This also speaks to the subconscious mental suppression of the violence of the partition. 
+
+### Visualisation 1 - Death and Narration:
+
+&nbsp;
+
+<center>
+
+![**Figure 1.1**](/Users/nishthadas/Desktop/R/images/pie1.png){width=35%}
+
+</center>
+
+&nbsp;
+
+For our first visualisation, we chose pie charts to represent the results of our Character Mortality faceted search. Since we are cross-referencing character death with two distinct narration styles, a pie chart keeps our comparisons as clear as possible with intuitive visuals and percentages. We filtered the data from our Character Mortality faceted search with narrative status, to only give the total number of events that dealt with deaths (‘Dead’ + ‘Dies’ entries). Of this total, we then split the events into narrated or remembered. The result is in **Figure 1.1** above, where a strong 66% of death-incurring events are narrated and 34% are remembered.
+
+We thought of separating ‘Dead’ and ‘Dies’ even in narrated events, with the former coming under memory, since these deaths occur before the temporal bounds of the text. Remembered events, by definition, also occur before the text. But some ‘Dies’ entries are remembered, despite the fact that they are supposed to be deaths that occur during the text. This made us unsure of our decision and we decided to merge the two.
+
+The results coincide with our analysis of the cross-tabs where we concluded that the aged demographic, mental suppression and reluctance to remember the violence could help explain the low number for remembered events. However, this raises an important point about mourning. If only 34% of deaths appear in remembered events, this could mean that friends and family of the deceased did not have enough time to grieve or recover to the point where they could speak of the death. On the other hand, repeated mentions of the death could mean the exact same: no healing. For example, in Manto’s *The Great Divide*, Jeena would cry often in mourning for her brother Fazal who had been killed in riots. 
+
+&nbsp;
+
+<center>
+
+![**Figure 1.2**](/Users/nishthadas/Desktop/R/images/pie2.png){width=35%}
+
+</center>
+
+&nbsp;
+
+We knowingly left out entries related to ‘Born’ characters as it wasn’t of direct relevance to our research question. Yet, we were intrigued by the events that were demarcated by ‘Unknown Dead or Alive’ characters. This could still have implications for the role of memory and moreover, how explicitly death was dealt with in narrated or remembered events. Similar to the previous methodology, we filtered our main data to only give the events where the status of mortality was unknown. These events were then split into narrated or remembered ones, as is shown in **Figure 1.2** above. Even at a glance, one can tell how overwhelmingly skewed the chart is, with 100% unknown character mortality occurring in narrated events.
+
+This 0% statistic for remembered events has some important implications. For partition survivors, this could mean months or years of healing and arriving at a clarified memory of what took place. However, as mentioned in our analysis, this could also mean repression and a reluctance to think about the uncertainty of the same. Maintaining the uncertainty of death in narrated events could also be an authorial strategy to heighten suspense but considering the massacres that took place, it is very probable that amidst the chaos, deaths were simply unprocessed or overlooked. This could mean the inability to identify bodies or even just sudden shock and trauma.  
+
+### Visualisation 2 - The Temporality of Conflict:
+
+<center>
+
+```{r, echo = FALSE}
+# Creating a bar graph
+# Note: This code is adapted from various online R tutorials, including Techvidvan and the R Graph Gallery. I've used barplot instead of ggplot because I found the data easier to input using a matrix.
+
+colnames <- c("Caste","Class","Gender","Interpersonal","Nation","Religion")
+rowname <- c("Narrated events","Remembered events")
+conflictmat <- matrix(c(1,0,5,0,2,1,15,19,16,6,54,19),
+                  c(2,6),
+                  byrow=FALSE) #Creating matrix for data
+colnames(conflictmat) <- colnames
+rownames(conflictmat) <- rowname
+opar = par(oma = c(0,3,0,0)) #Adjusting left margin parameters
+barplot(conflictmat,beside=TRUE,
+         main="Conflict in Memory",
+        xlab="Number of Conflict Occurences",
+        horiz=T, las=1,
+        col=c("coral2", "darkgoldenrod1"))
+par(opar)
+legendcols = c("coral2", "darkgoldenrod1") 
+opar = par(oma = c(0,0,0,0), mar = c(0,0,0,0), new = TRUE)
+legend(x = "right", legend = rownames(conflictmat), fill = legendcols, bty = "n", y.intersp = 2)
+par(opar)
+```
+
+</center>
+
+Next, we plotted the occurrences of the types of conflict in different narrative styles. To aptly cater to the 6 types of conflict, we chose a bar graph to represent our data, as seen above. For a Partition database, the visualization is in concurrence with our hypothesis - religious conflict outnumbered the rest significantly, a whopping 54 religious conflict events are narrated, while 19 are remembered or told. This was the highest data point by a sizable margin. The pervasive violence that religious conflict was at the time is perhaps better reflected in narration, with memory not being able to fully capture the extent of it.
+
+Interpersonal conflict is the only place where remembered events outnumber narrated ones. Like the stories in our database, interpersonal conflict is also the place where the personal meets the political. It insinuates that even amidst the violence going on publicly, the violence of people’s private conflicts is what stuck with them in memory. It also must be noted that personal conflict in these stories can also be because of Partition -- for example, a family may have conflict because some members want to move to Pakistan while some don’t or vice versa. 
+
+The very few instances of caste and class conflict (1 and 5 respectively) are all narrated. This is a deeply upsetting statistic, considering that the people who stayed alive to remember events in Partition were often ones who had the means to safely transport to a new country and create a new life there. Class and caste angles bring in a multiple marginality, the stories of which are often not memorialised. However, from our experience with the texts, Manto in particular featured many characters that were poor. So the low number of conflict events is a bit counterintuitive in the first place -- religion, rather than class, became the focal point of both his writing and our data entry. 
+
+### Reflection:
+
+First and foremost, we recognise that the conclusions we have drawn are based on limited data. For character mortality, our database comprises 39 instances, out of which 28 are narrated events and 11 are remembered. This vastly varies our understanding of the visualization, especially of unknown character mortality which was 100% attributed to narrated events but based on only 5 instances. This is a caveat to bear in mind when considering the implications our data holds to any understanding of how memory played a role in partition.
+
+We look intimately at this data in relation to the term “conflict”. It is worth acknowledging the comprehensive nature of the term, and how that potentially affects the data’s representation of the partition. Conflict can refer to a wide range of activities, from microaggressions, physically intangible violence and violence on a large scale of destruction. Distinguishing between the intensity of conflict when we consider memory as a facet is vital. We categorised conflict based on the parties involved, but this data still doesn’t refer to the intensity of these forms of conflict. A possible way to approach this could be to use the Characters at Events faceted search and cross-reference character vitality with event conflict and narrative status. With this we could fish out the deaths attributed to conflict along with the corresponding narrative status. However, this also misses out on conflict below the high bar of death, which is still very important.
+
+Our analysis also raises the question of temporality in light of how entries of characters who die during the text and characters who have died before the text are both narrated. The queries we used are largely dependent on Character Vitality and Narrative Status, data fields that were added in the latter half of the database’s creation. This leaves the potential for unrevised data entries, which is evident based on the size of the available data for our first visualisation. The tagged entries also had to fit within an existing bucket of narrative status. While we encountered instances of text that did not perfectly fit any singular narrative status or were nested in multiple layers of narrative styles, they too needed to be tagged into the most viable existing bucket. Manto particularly uses a variety of narrative styles, often switching between them effortlessly. Therefore, it speaks to the fluid nature of literature, memory and Manto’s writing that we are unable to perfectly log narrative status. 
+
+In comparison to Voyant and R, working with a database was surprisingly refreshing. The actual process of database entry mandated a good understanding of a text as we had to iteratively run through its plot to be able to accurately tag entities. Such semi-close reading was missing from Voyant and R, where we already had a dataset in the form of the corpus and simply worked with that. Hence, database entry seems like the inverse of what we did using R and Voyant. In the former, we manually pick up entities relevant to us from a large collection of data so the entities are all that are available to us. In the latter, we first feed the entire collection of data and then algorithmically carve it down to entities that are relevant, but the entire collection is still available to us. 
+
+However, this raises the question of scale. We worked with a small group of short stories, most of which didn’t exceed 8-10 pages. This valid point was brought up by @Paritosh_Panda in class. So what happens when we work with full-length novels? Even if the novel is split across a group of people entering data, how can we then ensure a clear understanding of the plot? On the basis of customisation, R seems to be the winner with its absolute flexibility in what one could do with a corpus. Yet, databases (in collaboration with Heurist) do provide some great customisable features like faceted search and the ability to add data fields as and when necessary. The adding of data fields, however, does mean that old data entries must be revised and while this was not an enormous problem for our scale, it could be for larger database projects.
+
+That being said, playing around with a database on Heurist was quite intuitive. Queries could be operationalised with minimal clicks of buttons as compared to R’s extensive coding. Even generating crosstabs was an automated process. In this regard, databases work similar to Voyant with an approachable interface and some built-in functionalities. Much like our earlier tools, there is great potential for databases especially if used in tandem with R or Voyant. Seeing as Heurist doesn’t provide many visualisation options, data could be exported as a .csv file and imported in R to create a customised visualisation (a strategy we used). All in all, the main concern with databases is scalability which includes problems regarding close-reading, crowdsourcing and time but otherwise it seems like a great asset to digital humanities research.
